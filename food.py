@@ -1,5 +1,5 @@
-import random
 import pygame
+import random
 from params import Params
 from circle import Circle
 
