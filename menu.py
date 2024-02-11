@@ -6,15 +6,14 @@ class Menu:
         pygame.font.init()
         self.screen = pygame.display.set_mode((Params.SCREEN_WIDTH, Params.SCREEN_HEIGHT))
         self.menu_active = True
-        self.selected_difficulty = "Facile"
+        self.selected_difficulty = "EASY"
         self.difficulty_checked = False
         self.selected_control = "StartKeyboard"
 
     def draw_checkbox(self, checkbox_rect, checked, text):
         pygame.draw.rect(self.screen, Params.WHITE, checkbox_rect, 2)
         if checked:
-            pygame.draw.line(self.screen, Params.WHITE, (checkbox_rect.x - 5, checkbox_rect.centery),
-                             (checkbox_rect.x + checkbox_rect.width + 5, checkbox_rect.centery), 2)
+            pygame.draw.line(self.screen, Params.WHITE, (checkbox_rect.x - 5, checkbox_rect.centery),(checkbox_rect.x + checkbox_rect.width + 5, checkbox_rect.centery), 2)
         font = pygame.font.SysFont(None, 25)
         text_surface = font.render(text, True, Params.WHITE)
         text_rect = text_surface.get_rect(center=checkbox_rect.center)
@@ -31,10 +30,9 @@ class Menu:
         font = pygame.font.SysFont(None, 30)
         text = font.render(f"Difficulty: {self.selected_difficulty}", True, Params.WHITE)
         self.screen.blit(text, (50, 400))
-
-        self.draw_checkbox(pygame.Rect(50, 450, 40, 40), self.selected_difficulty == "Facile", "Facile")
-        self.draw_checkbox(pygame.Rect(50, 500, 40, 40), self.selected_difficulty == "Normal", "Normal")
-        self.draw_checkbox(pygame.Rect(50, 550, 40, 40), self.selected_difficulty == "Difficile", "Difficile")
+        self.draw_checkbox(pygame.Rect(50, 450, 40, 40), self.selected_difficulty == "EASY", "EASY")
+        self.draw_checkbox(pygame.Rect(50, 500, 40, 40), self.selected_difficulty == "NORMAL", "NORMAL")
+        self.draw_checkbox(pygame.Rect(50, 550, 40, 40), self.selected_difficulty == "HARD", "HARD")
 
     def draw_button(self, button_rect, text, action):
         pygame.draw.rect(self.screen, Params.WHITE, button_rect, 2)
@@ -57,22 +55,19 @@ class Menu:
         self.draw_button(pygame.Rect(250, 450, 200, 50), "Start with Keyboard", "StartKeyboard")
         self.draw_button(pygame.Rect(250, 500, 200, 50), "Start with Mouse", "StartMouse")
         self.draw_button(pygame.Rect(250, 550, 200, 50), "Exit", "Exit")
+
     def display_menu(self):
         clicked_button = None
-        while self.menu_active:
+        while True:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     quit()
                 elif event.type == pygame.MOUSEBUTTONDOWN:
-                    self.handle_checkbox_click(pygame.Rect(50, 450, 40, 40), "Facile")
-                    self.handle_checkbox_click(pygame.Rect(50, 500, 40, 40), "Normal")
-                    self.handle_checkbox_click(pygame.Rect(50, 550, 40, 40), "Difficile")
+                    self.handle_checkbox_click(pygame.Rect(50, 450, 40, 40), "EASY")
+                    self.handle_checkbox_click(pygame.Rect(50, 500, 40, 40), "NORMAL")
+                    self.handle_checkbox_click(pygame.Rect(50, 550, 40, 40), "HARD")
                     clicked_button = self.handle_button_click(pygame.Rect(250, 450, 200, 50), "StartKeyboard")
-                    if not clicked_button:
-                        clicked_button = self.handle_button_click(pygame.Rect(250, 500, 200, 50), "StartMouse")
-                    if not clicked_button:
-                        clicked_button = self.handle_button_click(pygame.Rect(250, 550, 200, 50), "Exit")
 
             self.screen.fill((0, 0, 0))
 
@@ -81,4 +76,5 @@ class Menu:
 
             pygame.display.flip()
 
-        return self.selected_control, self.selected_difficulty
+            if clicked_button:
+                return self.selected_difficulty
