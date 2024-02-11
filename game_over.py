@@ -1,6 +1,5 @@
 import pygame
 from params import Params
-from menu import Menu
 
 class GameOver:
     def __init__(self, player_score, player_size):
@@ -17,24 +16,17 @@ class GameOver:
                     quit()
                 elif event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_ESCAPE:
-                        return  # Retour au menu si la touche Escape est enfoncée
+                        return
                 elif event.type == pygame.MOUSEBUTTONDOWN:
                     if self.play_again_button_rect.collidepoint(event.pos):
-                        return "PlayAgain"  # Retour au menu si le bouton "Play Again" est cliqué
-
+                        return "PlayAgain"
             self.screen.fill((0, 0, 0))
-
             font = pygame.font.SysFont(None, 36)
             score_text = font.render(f"Score: {self.player_score}", True, Params.WHITE)
             size_text = font.render(f"Player Size: {int(self.player_size)}", True, Params.WHITE)
-
-            # Affichage des informations du joueur
             self.screen.blit(score_text, (Params.SCREEN_WIDTH // 2 - 50, Params.SCREEN_HEIGHT // 2 - 20))
             self.screen.blit(size_text, (Params.SCREEN_WIDTH // 2 - 50, Params.SCREEN_HEIGHT // 2 + 20))
-
-            # Affichage du bouton "Play Again"
             self.draw_play_again_button()
-
             pygame.display.flip()
 
     def draw_play_again_button(self):

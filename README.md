@@ -2,80 +2,42 @@
 
 ## Objectif
 
-Vous êtes missionnés pour recréer le célèbre jeu Agar.io en Python en mode solo en utilisant la librairie Pygame.
+You are tasked with recreating the famous Agar.io game in Python in single-player mode using the Pygame library.
 
-## Fonctionnalités
+## Features
 
-Pour ce projet, vous devrez implémenter les fonctionnalités suivantes :
+Game modes are selectable by clicking on the corresponding text in the menu.
 
-#### Le joueur
-**Si contrôlé par les touches du clavier**, il ne se déplacera que si vous utilisez les touches du clavier.
-**Si contrôlé par la souris**, il se déplacera dès le lancement de la partie et suivra la direction vers la souris.
+- ⌨️ Play with Keyboard: You can move your player using the keys z, q, s, d.
+- 🖱️ Play with Mouse: Your player will follow the direction of your mouse.
 
-Le joueur sera un rond qui aura les attributs suivants :
-* **Score** : qui augmentera de 1 à chaque boule mangée.
-* **Vitesse** : vitesse de déplacement commençant à 100 qui augmentera de 5 à chaque boule mangée jusqu'à une limite de 500 de vitesse.
-* **Taille** : rayon du rond commençant à 40 et qui augmentera de 2 à chaque boule mangée jusqu'à une limite de 200 de rayon.
+## Difficulties
 
-Une fois que le joueur atteint la bordure de la map il est automatiquement téléporté dans la même direction de l'autre côté de la map.
+- Level 2 (Easy): 2 traps and 5 foods
+- Level 3 (Medium): 3 traps and 3 foods
+- Level 4 (Hard): 4 traps and 2 foods
 
-#### La nourriture (la boule)
-**N** boules apparaîtront de manière aléatoire sur la map. Les boules doivent être sous forme de rond mais doivent se différencier par un certain attribut (par exemple : la couleur) des joueurs et doivent avoir la même taille chacune.
-Une fois mangée, c'est-à-dire dès que la bordure du joueur touche la bordure de la boule, alors celle-ci disparaitra et fera apparaître une nouvelle de manière aléatoire sur la map.
+## Game Rules
 
-#### Les pièges
+You have 60 seconds to achieve the highest possible score, so watch out for the timer! 😉
+If your character is bigger than a trap, your size and your speed will be divided by the current level number.
+You earn points by eating food.
 
-En fonction de la difficulté, un nombre **N** de pièges (des ronds de couleur différente que le joueur et que la nourriture) apparaîtront de manière aléatoire avec une taille aléatoire entre **40** et **150** qui représentera le rayon du piège.
+## Controls 
 
-**Si la taille du joueur est inférieure à la taille du piège**, alors le joueur pourra se cacher en dessous du piège et rien ne se passera.
-**Si la taille du joueur est supérieure à la taille du piège**, alors le joueur se verra diviser sa taille et sa vitesse par le numéro correspondant à la difficulté sélectionnée. Le **piège**, quant à lui, disparaîtra et un nouveau piège apparaîtra de manière aléatoire sur la map. Un joueur est au contact d'un piège si la bordure des deux entités se touchent.
+- In the menu:
+p: Play with keyboard.
+q: Exit the game.
 
-#### Choix de difficultés
-
-* Facile : **2**. `2 pièges et 5 boules apparaîtront`
-* Normal : **3**. `3 pièges et 3 boules apparaîtront`
-* Difficile : **4**. `4 pièges et 2 boules apparaîtront`
-
-## Interface Utilisateur
-
-#### Menu de jeu
-* **"Play with keyboard"** : En cliquant sur la touche **P** ou **p** du clavier, vous pourrez contrôler le joueur avec les touches du clavier "Z,Q,S,D".
-* **"Play with mouse"** : En cliquant sur la **souris**, vous pourrez contrôler la direction du joueur avec votre souris.
-* **"Quit"** : En cliquant sur la touche **Q** ou **q** du clavier, l'application se verra arrêtée.
-
-* Un **radiobutton** ou **liste déroulante** qui permettra de sélectionner une difficulté parmi les 3 difficultés suivantes : Facile, Normal, Difficile.
-
-#### Jeu 
-
-* Taille d'écran : 1280x720
-* Un chronomètre doit être affiché sur l'écran de jeu. Ce chronomètre commence à un temps configuré (minimum **60s**) et défilera chaque seconde (la décrémentation doit être visible en instantané). Lorsque ce chronomètre aura atteint **0s**, la partie sera terminée et un écran apparaîtra avec le score affiché et un bouton **"Retour au menu principal"** qui renverra vers le menu principal et remettra à zéro toute la partie.
-* En pleine partie, le bouton **Escape** ou **Echap** permet de retourner au menu principal ce qui remettra à zéro toute la partie.
-* Le score, la vitesse, la taille, et la difficulté choisie doivent apparaître sur l'écran de jeu du joueur et mis à jour continuellement si ces valeurs viennent à changer pendant la partie.
-
-## Contraintes
-
-* Vous devez utiliser la librairie Pygame pour réaliser l'application.
-* Tous les standards intégrés à Python sont autorisés.
-* Toute autre librairie de Python n'est pas autorisée. Si une question, ou une interrogation à ce sujet ou sur comment faire ==> voir avec Jean-Philippe CAETANO.
-* L'utilisation de l'IA et tout autre outil faisant recours à l'IA est strictement interdite. La documentation à l'aide des IA n'est également pas autorisée. Toute utilisation des IA entraînera un 0.
-* Le projet devra être rendu sur le github classroom accompagné d'un **read.me** bien renseigné. Veillez à bien tester votre **read.me**. Si un projet n'est pas lançable à l'aide du read.me, il sera compté comme non valable. Vous aurez donc 0. De plus, le correcteur n'apportera aucune modification à votre code et aux librairies et leurs version (Pas de correction d'erreur, pas de modification de l'environnement à l'initiative du correcteur).
-* Aucun rendu ne sera toléré **après le dimanche 11 février 2024 à 23h59** (date et heure du dernier push du projet).
-* Utilisation de Python de façon native. Pas de framework.
-* Le projet devra être réalisé de façon individuelle.
-* Un travail sur la gestion des versions de l’application est attendu (commits travaillés, gestion des branches). Une pénalité peut être appliquée en cas de non-respect conséquent des normes de nommage et de Gitflow.
-* Les conventions de code en Python doivent être respectées.
-* Vous devrez faire le plus possible utilisation de la Programmation Orienté Objet.
+- During the game:
+esc or escape: End the game.
+Any text preceded by an arrow is clickable. If a text is preceded by a red circle, it means the option is selected.
 
 ## Ressources
 
 - [PEP 8 - Convention de code en Python](https://peps.python.org/pep-0008/)
 - [Pygame - Documentation officielle](https://www.pygame.org/docs/)
 - [Python - Documentation officielle](https://docs.python.org/3/) (attention à bien lire la version que vous utilisez)
-
-
-et le miens : 
-![Logo](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/th5xamgrr6se0x5ro4g6.png)
-
 
 # Chess
 
@@ -110,13 +72,28 @@ Make sure you have the following prerequisites installed on your system:
    git clone https://github.com/B2-Info-23-24/agarpyo-b2-b-Doctorwho07.git
 ```
 
+2. Navigate to your project directory:
 
+```
+   cd agarpyo-b2-b-Doctorwho07
+```
 
+3. Create a Conda environment from the provided environment.yaml file:
 
-Install my-project with git
+```
+conda env create -f environment.yaml
+```
 
-```bash
-git clone
+4. Activate the newly created environment:
+
+```
+conda activate mazbazpyo
+```
+
+5. Run the game
+
+```
+python main.py
 ```
 
 ## Color Reference

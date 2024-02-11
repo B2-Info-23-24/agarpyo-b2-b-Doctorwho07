@@ -17,7 +17,7 @@ class Game:
         self.time = Params.CHRONO_START_TIME
         self.game_started = True
         self.menu_active = True
-        self.menu = Menu()
+        self.menu = Menu(self.player)
         self.player = Player(Params.PLAYER_START_X, Params.PLAYER_START_Y)
         self.food_list = []
         self.trap_list = []

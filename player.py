@@ -30,7 +30,10 @@ class Player(Circle):
             self.move_keyboard()
         elif self.movement_mode == "mouse":
             mouse_pos = pygame.mouse.get_pos()
-            self.move_mouse(mouse_pos, Params.FPS)
+            direction = pygame.math.Vector2(mouse_pos[0] - self.x, mouse_pos[1] - self.y).normalize()
+            self.x += direction.x * self.speed / Params.FPS
+            self.y += direction.y * self.speed / Params.FPS
+
         self.teleport()
         for trap in game.trap_list:
             if self.is_colliding(trap):
