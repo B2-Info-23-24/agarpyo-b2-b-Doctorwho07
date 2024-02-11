@@ -48,13 +48,13 @@ class Game:
 
     def draw_stats(self):
             font = pygame.font.Font(None, 36)
-            time_text = font.render(f"Time: {int(pygame.time.get_ticks() / 1000)}", True, Params.WHITE)
+            time_text = font.render(f"Time: {int(self.time)}", True, Params.WHITE)
             speed_text = font.render(f"Speed: {int(self.player.speed)}", True, Params.WHITE)
             score_text = font.render(f"Score: {self.player.score}", True, Params.WHITE)
             difficulty_text = font.render(f"Difficulty: {self.menu.selected_difficulty}", True, Params.WHITE)
             trap_text = font.render(f"Traps: {len(self.trap_list)}", True, Params.WHITE)
             food_text = font.render(f"Food: {len(self.food_list)}", True, Params.WHITE)
-            size_text = font.render(f"Player Size: {int(self.player.size)}", True, Params.WHITE)
+            size_text = font.render(f"Player Size: {int(self.player.radius)}", True, Params.WHITE)
             self.screen.blit(time_text, (10, 10))
             self.screen.blit(speed_text, (10, 50))
             self.screen.blit(score_text, (10, 90))
@@ -70,27 +70,28 @@ class Game:
                     self.game_started = False
                 elif event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_ESCAPE:
-                        self.menu_active = not self.menu_active  # Toggle menu activation
-
+                        self.menu_active = not self.menu_active
+                    elif event.key == pygame.K_q:  # Ajout de la vérification pour la touche 'Q'
+                        self.game_started = False
                 if self.menu_active:
                     clicked_checkbox = self.menu.display_menu()
                     if clicked_checkbox:
                         self.difficulty_setting()
-                        self.menu_active = False  # Deactivate menu after making selections
+                        self.menu_active = False
 
             self.screen.fill((0, 0, 0))
 
             if self.menu_active:
-                # Draw menu if active
                 self.menu.display_menu()
             else:
-                # Continue with game logic if menu is not active
                 self.generate_food()
                 self.generate_trap()
                 self.player.move(self)
                 self.draw_elements()
                 self.draw_stats()
-
+                self.time -= 1 / Params.FPS
+                if self.time <= 0:
+                    self.game_started = False
             pygame.display.flip()
             self.clock.tick(Params.FPS)
 

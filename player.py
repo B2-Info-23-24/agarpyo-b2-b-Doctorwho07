@@ -7,7 +7,7 @@ class Player(Circle):
     def __init__(self, x, y):
         super().__init__(x, y, Params.PLAYER_RADIUS, Params.PLAYER_COLOR)
         self.speed = Params.PLAYER_SPEED
-        self.size = Params.PLAYER_RADIUS
+        self.radius = Params.PLAYER_RADIUS
         self.score = 0
 
     def eat(self):
@@ -20,8 +20,8 @@ class Player(Circle):
             self.speed += Params.PLAYER_SPEED_INCREMENT
 
     def increase_size(self):
-        if self.size < Params.MAX_PLAYER_SIZE:
-            self.size += Params.PLAYER_SIZE_INCREMENT
+        if self.radius < Params.MAX_PLAYER_SIZE:
+            self.radius += Params.PLAYER_SIZE_INCREMENT
 
     def move(self, game):
         # if game.mouse :
@@ -29,10 +29,10 @@ class Player(Circle):
         # else :
         self.move_keyboard()
         self.teleport()
-        for trap in game.trap_list: 
+        for trap in game.trap_list:
             if self.is_colliding(trap):
                 if self.radius > trap.radius:
-                    self.size -= Params.DIFFICULTY_SETTINGS[game.menu.selected_difficulty]["DecrementAmount"]
+                    self.radius -= Params.DIFFICULTY_SETTINGS[game.menu.selected_difficulty]["DecrementAmount"]
                     self.speed -= Params.DIFFICULTY_SETTINGS[game.menu.selected_difficulty]["DecrementAmount"]
                     game.trap_list.remove(trap)
         for food in game.food_list:
@@ -64,8 +64,8 @@ class Player(Circle):
     def move_mouse(self):
         mouse_x, mouse_y = pygame.mouse.get_pos()
         angle = math.atan2(mouse_y - self.y, mouse_x - self.x)
-        self.x += self.speed * math.cos(angle)
-        self.y += self.speed * math.sin(angle)
-
+        self.x += self.speed / Params.FPS * math.cos(angle)
+        self.y += self.speed / Params.FPS * math.sin(angle)
+        
     def draw(self, surface):
-        pygame.draw.circle(surface, self.color, (int(self.x), int(self.y)), int(self.size))
+        pygame.draw.circle(surface, self.color, (int(self.x), int(self.y)), int(self.radius))
