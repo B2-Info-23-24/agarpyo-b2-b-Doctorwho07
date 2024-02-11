@@ -87,7 +87,7 @@ conda env create -f environment.yaml
 4. Activate the newly created environment:
 
 ```
-conda activate mazbazpyo
+conda activate Agarpy.io
 ```
 
 5. Run the game
