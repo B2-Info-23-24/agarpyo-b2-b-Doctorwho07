@@ -52,26 +52,6 @@ En fonction de la difficulté, un nombre **N** de pièges (des ronds de couleur 
 * En pleine partie, le bouton **Escape** ou **Echap** permet de retourner au menu principal ce qui remettra à zéro toute la partie.
 * Le score, la vitesse, la taille, et la difficulté choisie doivent apparaître sur l'écran de jeu du joueur et mis à jour continuellement si ces valeurs viennent à changer pendant la partie.
 
-## Black Track (facultatif comptant comme un bonus à hauteur de maximum +2 points sur la note finale sur 20 à l'appréciation du correcteur)
-
-#### Interface Utilisateur
-
-Le menu du jeu doit comporter des boutons qui changent légèrement de couleur au passage de la souris dessus. Il ne doit plus être possible de lancer la partie ou quitter l'application avec une touche du clavier mais seulement en cliquant sur ces boutons.
-
-#### Scoreboard & Gamify
-
-* Le joueur pourra entrer un nom pour sa partie.
-* Les scores des joueurs doivent être sauvegardès dans un fichier CSV qui comportera les colonnes suivantes : Nom du joueur, Taille du joueur, Vitesse du joueur, Difficulté choisie, Score
-* Ces scores doivent pouvoir être consultables depuis le menu du jeu avec un bouton **"Top 10"** qui affichera seulement les **10 premiers** triés par ordre décroissant du score (meilleur score en haut, dernier score en bas). S'il n'y a pas 10 joueurs dans le fichier CSV, il doit seulement afficher les joueurs présents ainsi que leurs statistiques classés par ordre décroissant du score (meilleur score en haut, dernier score en bas).
-
-#### Customisation
-
-* Le joueur pourra avoir un menu d'options en plein jeu (ou même avant de lancer la partie) et pourra customiser l'interface. Il pourra alors choisir la couleur (ou le skin) du joueur, des pièges, et de la nourriture. Il pourra changer la couleur de fond du jeu.
-
-* Un audio pourra être intégré au jeu.
-
-* Impressionnez-moi avec votre imagination.
-
 ## Contraintes
 
 * Vous devez utiliser la librairie Pygame pour réaliser l'application.
@@ -113,7 +93,25 @@ Vous êtes missionnés pour recréer le célèbre jeu Agar.io en Python en mode 
 ![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
 
 
-## Installation
+# Installation Guide
+
+## Prerequisites
+
+Make sure you have the following prerequisites installed on your system:
+
+- Git
+- Anaconda Navigator
+
+## Installation & Usage
+
+1. Clone this repository to your local machine:
+
+```
+   git clone https://github.com/B2-Info-23-24/agarpyo-b2-b-Doctorwho07.git
+```
+
+
+
 
 Install my-project with git
 
