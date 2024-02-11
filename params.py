@@ -34,7 +34,7 @@ class Params:
     WHITE = (255, 255, 255)
     
     DIFFICULTY_SETTINGS = {
-        "Facile": {"TrapCount": 2, "FoodCount": 5, "DecrementAmount": 2},
-        "Normal": {"TrapCount": 3, "FoodCount": 3, "DecrementAmount": 3},
-        "Difficile": {"TrapCount": 4, "FoodCount": 2, "DecrementAmount": 4},
+        "EASY": {"TrapCount": 2, "FoodCount": 5, "DecrementAmount": 2},
+        "NORMAL": {"TrapCount": 3, "FoodCount": 3, "DecrementAmount": 3},
+        "HARD": {"TrapCount": 4, "FoodCount": 2, "DecrementAmount": 4},
     }
