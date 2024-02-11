@@ -10,7 +10,6 @@ class Circle:
     def draw(self, screen):
         pygame.draw.circle(screen, self.color, (int(self.x), int(self.y)), self.radius)
 
-    def is_colliding(self, other):
-        distance_squared = (self.x - other.x)**2 + (self.y - other.y)**2
-        combined_radius = (self.radius + other.radius)**2
-        return distance_squared < combined_radius
+    def is_colliding(self, object):
+        distance = ((self.x - object.x)**2 + (self.y - object.y)**2)**0.5
+        return distance < self.radius + object.radius
