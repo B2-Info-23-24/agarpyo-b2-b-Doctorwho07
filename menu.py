@@ -1,5 +1,6 @@
 import pygame
 from params import Params
+from player import Player
 
 class Menu:
     def __init__(self):
@@ -45,11 +46,15 @@ class Menu:
         mouse = pygame.mouse.get_pos()
         click = pygame.mouse.get_pressed()
         if button_rect.collidepoint(mouse) and click[0] == 1:
-            if action in ["StartKeyboard", "StartMouse", "Exit"]:
+            if action == "Exit":
+                pygame.quit()
+                quit()
+            if action in ["StartKeyboard", "StartMouse"]:
                 self.selected_control = action
                 self.menu_active = False
             return action
         return None
+
 
     def draw_menu_buttons(self):
         self.draw_button(pygame.Rect(250, 450, 200, 50), "Start with Keyboard", "StartKeyboard")
@@ -68,6 +73,21 @@ class Menu:
                     self.handle_checkbox_click(pygame.Rect(50, 500, 40, 40), "NORMAL")
                     self.handle_checkbox_click(pygame.Rect(50, 550, 40, 40), "HARD")
                     clicked_button = self.handle_button_click(pygame.Rect(250, 450, 200, 50), "StartKeyboard")
+                    if clicked_button:
+                        Player.set_movement_mode(self, "keyboard")
+                        return self.selected_difficulty
+
+            keys = pygame.key.get_pressed()
+            if keys[pygame.K_q]:
+                pygame.quit()
+                quit()
+
+            if keys[pygame.K_p] and self.selected_control == "StartKeyboard" and self.difficulty_checked:
+                return self.selected_difficulty
+
+            if self.difficulty_checked:
+                if keys[pygame.K_p]:
+                    return self.selected_difficulty
 
             self.screen.fill((0, 0, 0))
 
@@ -76,5 +96,10 @@ class Menu:
 
             pygame.display.flip()
 
+            clicked_button = self.handle_button_click(pygame.Rect(250, 500, 200, 50), "StartMouse")
             if clicked_button:
+                Player.set_movement_mode(self, "mouse")
+                if clicked_button == "Exit":
+                    pygame.quit()
+                    quit()
                 return self.selected_difficulty

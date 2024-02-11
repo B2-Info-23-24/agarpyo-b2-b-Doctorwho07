@@ -24,7 +24,7 @@ class Params:
 
     # Other game parameters
     FPS = 30
-    CHRONO_START_TIME = 60
+    CHRONO_START_TIME = 10
     SCORE_INCREMENT = 1
 
     # Colors
